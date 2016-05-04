@@ -16,7 +16,7 @@ module.exports = {
 			page: ['page', 'number', 'page']
 		},
 		// hooks: [ auth.isLoggedIn() ],
-		fn: function get(req, res) {
+		fn: function list(req, res) {
 			var Service = req.models.Service,
 				limit = req.query.limit || 250;
 			if (limit > 250) {
@@ -49,7 +49,7 @@ module.exports = {
 		params: {
 		},
 		// hooks: [ auth.isLoggedIn() ],
-		fn: function add(req, res) {
+		fn: function create(req, res) {
 			async.waterfall([
 				function (next) {
 					var form = new multiparty.Form();
