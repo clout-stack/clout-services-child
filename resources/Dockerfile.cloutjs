@@ -6,8 +6,7 @@ MAINTAINER Muhammad Dadu
 
 # Install Node.js and other dependencies
 RUN apt-get update
-RUN apt-get -y install libcurl3 curl
-RUN curl -sL https://deb.nodesource.com/setup | sudo bash
+RUN wget https://deb.nodesource.com/setup | sudo /bin/bash
 RUN apt-get -y install python build-essential nodejs
 
 # ADD /usr/local/lib/node_modules /node_modules
