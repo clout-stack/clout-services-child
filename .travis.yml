@@ -17,7 +17,7 @@ install:
 
 before_script:
   - npm install -g grunt
-  - npm install
+  - sudo npm install
 
 script:
   - npm test
