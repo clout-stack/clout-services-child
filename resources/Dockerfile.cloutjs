@@ -1,13 +1,11 @@
 # Set the base image to Ubuntu hypriot/rpi-node:5.10.0 for PI
-FROM    ubuntu
+FROM node:argon
 
 # File Author / Maintainer
 MAINTAINER Muhammad Dadu
 
 # Install Node.js and other dependencies
 RUN apt-get update
-RUN wget https://deb.nodesource.com/setup | sudo /bin/bash
-RUN apt-get -y install python build-essential nodejs
 
 # ADD /usr/local/lib/node_modules /node_modules
 # Install nodemon
