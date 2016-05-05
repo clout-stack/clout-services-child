@@ -25,7 +25,7 @@ describe('services test', function () {
 	});
 
 	it('create docker container w/ NodeJS application', function (done) {
-		this.timeout(50000);
+		this.timeout(1000000);
 		var uri = url + '/api/dev/tester/service?application=' + JSON.stringify({ name: 'tester', id: 'tester' });
 		console.log(uri);
 		request({
