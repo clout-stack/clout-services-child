@@ -1,0 +1,23 @@
+sudo: required
+dist: trusty
+
+cache:
+  - apt
+
+addons:
+  apt:
+    packages:
+      - nginx
+      - docker
+      - nodejs
+      - sqlite3
+
+install:
+  - git clone https://github.com/clout-stack/clout-scripts.git && cd clout-scripts && sudo bash install.sh
+
+before_script:
+  - npm install -g grunt
+  - npm install
+
+script:
+  - npm test

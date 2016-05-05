@@ -50,7 +50,7 @@ describe('services test', function () {
 			should.not.exist(err);
 			should.exist(body);
 			should(body).be.a.Object();
-			body.success.should.be.eql(true, body.data);
+			body.success.should.be.eql(true, body.success);
 			done();
 		});
 	});
