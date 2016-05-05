@@ -20,4 +20,4 @@ before_script:
   - sudo npm install
 
 script:
-  - npm test
+  - grunt test
