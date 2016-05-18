@@ -169,10 +169,11 @@ Service.publish = function publish(opts) {
 				async.series([
 					// get port
 					function (go) {
-						exec("netstat  -atn | perl -0777 -ne '@ports = /tcp.*?\:(\d+)\s+/imsg ; for $port (32769..61000) {if(!grep(/^$port$/, @ports)) { print $port; last } }'", function (error, stdout, stderr) {
+						exec('ss -tln |awk \'NR > 1{gsub(/.*:/,"",$4); print $4}\' |sort -un |awk -v n=1080 \'$0 < n {next}; $0 == n {n++; next}; {exit}; END {print n}\'', function (error, stdout, stderr) {
 							if (error) { return go('getPort: error:' + error); }
 							if (stderr) { return go('getPort: stderr:' + stderr); }
 							port = stdout.trim();
+							debug('port found %s', port);
 							go();
 						});
 					},
@@ -193,10 +194,10 @@ Service.publish = function publish(opts) {
 					},
 					// run container
 					function (go) {
+						debug('binding port %s', String(container.port));
 	  					container.start({
-	  						"PortBindings": { "8080/tcp": [{ "HostPort": String(container.port) }]}
-	  					},
-	  					function (err, data) {
+	  						'PortBindings': { '8080/tcp': [{ 'HostPort': String(container.port) }]}
+	  					}, function (err, data) {
 	  						if (err) { return go(err); }
 	  						debug('container-started');
 	  						go();
